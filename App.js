@@ -17,7 +17,7 @@ export default class App extends Component {
     super(props)
     this.state = {
       faces: '',
-      facing: 'back'
+      facing: 'front'
     }
   }
 
@@ -35,19 +35,16 @@ export default class App extends Component {
   }
 
   onFacesDetectedCv = (e) => {
-    console.log('------------------------------------');
-    console.log('e => ', e);
-    console.log('------------------------------------');
-    // if (Platform.OS === 'ios') {
-    //   if ((!e.nativeEvent.payload && this.state.faces) || (e.nativeEvent.payload && !this.state.faces) || (e.nativeEvent.payload && this.state.faces)) {
-    //     this.setState({ faces: e.nativeEvent.payload })
-    //   }
-    // }
-    // else {
-    //   if ((!e.payload && this.state.faces) || (e.payload && !this.state.faces) || (e.payload && this.state.faces)) {
-    //     this.setState({ faces: e.payload })
-    //   }
-    // }
+    if (Platform.OS === 'ios') {
+      if ((!e.nativeEvent.payload && this.state.faces) || (e.nativeEvent.payload && !this.state.faces) || (e.nativeEvent.payload && this.state.faces)) {
+        this.setState({ faces: e.nativeEvent.payload })
+      }
+    }
+    else {
+      if ((!e.payload && this.state.faces) || (e.payload && !this.state.faces) || (e.payload && this.state.faces)) {
+        this.setState({ faces: e.payload })
+      }
+    }
   }
 
   renderLandmarks() {
